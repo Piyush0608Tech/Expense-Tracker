@@ -1,64 +1,33 @@
-document.addEventListener("DOMContentLoaded", loadExpenses);
-
-function addExpense(event){
-    event.preventDefault(); 
-    const amount = parseFloat(document.getElementById('expenseamount').value);
-    const description = document.getElementById('expensedescription').value;
-    const category = document.getElementById('expensecategory').value;
+const exp = document.querySelector("button[type='submit']");
+const added = document.querySelector(".listul");
+console.log("added");
+exp.addEventListener("click", function(event){
+    event.preventDefault();
+    const amount = document.getElementById("amount").value;
+    const desc = document.getElementById("Description").value;
+    const cat = document.getElementById("Category").value;
+    const list = document.createElement("li");
+    list.textContent = `${amount} - ${desc} - ${cat}`;
+    document.getElementById("amount").value="";
+    document.getElementById("Description").value="";
+    document.getElementById("Category").value="";
+    const del = document.createElement("button");
+    const deltext = document.createTextNode("Delete");
+    del.appendChild(deltext);
+    del.className="deletebtn";
+    list.appendChild(del);
+    const edit = document.createElement("button");
+    const edittext = document.createTextNode("edit");
+    edit.appendChild(edittext);
+    edit.className="editbtn";
+    list.appendChild(edit);
+    added.appendChild(list);
+})
+added.addEventListener("click", function(event){
+    if (event.target.classList.contains("deletebtn")){
+        const dell = event.target.parentElement;
+        added.removeChild(dell);
+    }
     
-    const expense = { amount, description, category };
-    const expenses =JSON.parse(localStorage.getItem('expenses')) || [];
-    expenses.push(expense);
+})
 
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-
-    document.getElementById('expenseamount').value= '';
-    document.getElementById('expensedescription').value = '';
-
-    loadExpenses();
-}
-
-function loadExpenses(){
-    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-    const expenseList = document.getElementById('expenselist');
-    expenseList.innerHTML= ''; 
-    expenses.forEach((expense, index) =>{
-        const listItem = document.createElement('li');
-        listItem.className ='expense-item';
-        listItem.innerHTML = `
-            <span>${expense.amount} - ${expense.description} - ${expense.category}</span>
-            <div>
-                <button onclick="editExpense(${index})">Edit</button>
-                <button onclick="deleteExpense(${index})">Delete</button>
-            </div>
-        `;
-        expenseList.appendChild(listItem);
-    });
-}
-
-function deleteExpense(index){
-    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-    if (index < 0 || index >=  expenses.length) {
-        console.error("Invalid index:", index);
-        return;
-    }
-    expenses.splice( index, 1) ;
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-    loadExpenses();
-}
-
-function editExpense(index){
-    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-    if (index < 0 || index >= expenses.length){
-        console.error("Invalid index:", index) ;
-        return;
-    }
-    const expense =expenses[index];
-    document.getElementById('expenseamount').value =expense.amount;
-    document.getElementById('expensedescription').value = expense.description;
-    document.getElementById('expensecategory').value = expense.category;
-
-    expenses.splice(index, 1);
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-    loadExpenses();
-}

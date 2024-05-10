@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
 </head>
 <body>
-    <div class="expenseform">
-        Choose Expense Amount: <input type="number" id="expenseamount" placeholder="Amount">
-        Choose Description: <input type="text" id="expensedescription" placeholder="Description">
-        Choose a Category: <select id="expensecategory">
-            <option value="Food">Food</option>
-            <option value="Travel">Travel</option>
-            <option value="Movie">Movie</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Other">Other</option>
-        </select>
-        <button onclick="addExpense(event)">Add Expense</button>
+        <div>
+            <h1>Expense Tracker</h1>
+        </div>
+    <div id="ex">
+       Amount: <input type="number" id="amount">
+       Description: <input type="text" id="Description">
+       Choose a Category: <select id="Category">
+        <option value="Food">Food</option>
+        <option value="Movie">Movie</option>
+        <option value="Travel">Travel</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Other">Other</option>
+       </select>
+       <button type="submit">Add Expense</button>
     </div>
-
-    <ul class="expenselist" id="expenselist"></ul>
+    <div>
+        <ul class="listul" id="listul"></ul>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
