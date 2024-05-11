@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker</title>
-</head>
-<body>
-        <div>
-            <h1>Expense Tracker</h1>
-        </div>
-    <div id="ex">
-       Amount: <input type="number" id="amount">
-       Description: <input type="text" id="Description">
-       Choose a Category: <select id="Category">
+  </head>
+  <body style="margin: 0">
+    <h1>Expense Tracker</h1>
+    <form id="myExpense">
+      <label for="amount">Choose Amount</label>
+      <input type="number" name="amount" id="amount" />
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" />
+      <label for="category">Category</label>
+      <select id="category" name="category">
         <option value="Food">Food</option>
         <option value="Movie">Movie</option>
         <option value="Travel">Travel</option>
         <option value="Shopping">Shopping</option>
         <option value="Other">Other</option>
-       </select>
-       <button type="submit">Add Expense</button>
-    </div>
-    <div>
-        <ul class="listul" id="listul"></ul>
-    </div>
-    <script src="index.js"></script>
-</body>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <ul id="exList">
+        
+
+    </ul>
+  </body>
+  <script src="index.js"></script>
 </html>
