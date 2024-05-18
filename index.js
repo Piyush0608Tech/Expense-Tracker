@@ -12,32 +12,33 @@ form.addEventListener('submit', function(event) {
     const userDet = JSON.stringify(userDetails);
     localStorage.setItem(userDetails.amount, userDet);
     alert('User details submitted successfully!');
-    show(userDetails)
+    show(userDetails);
 });
 
-function show(userDetails){
+function show(userDetails) {
     const cre = document.getElementById("exList");
     const list = document.createElement("li");
-    list.textContent = userDetails.amount+' _ '+userDetails.description+' _ '+userDetails.category;
+    list.textContent = userDetails.amount + ' _ ' + userDetails.description + ' _ ' + userDetails.category;
     const del = document.createElement("button");
-    del.textContent="delete";
-    del.onclick = () =>{
-        localStorage.removeItem(userDetails.email);
+    del.textContent = "delete";
+    del.onclick = () => {
+        localStorage.removeItem(userDetails.amount); 
         cre.removeChild(list);
     }
     const edit = document.createElement("button");
-    edit.textContent="edit";
-    edit.onclick = () =>{
-        localStorage.removeItem(userDetails.email);
+    edit.textContent = "edit";
+    edit.onclick = () => {
+        localStorage.removeItem(userDetails.amount); 
         cre.removeChild(list);
-        document.getElementById("amount").value=userDetails.username;
-        document.getElementById("description").value=userDetails.email;
-        document.getElementById("category").value=userDetails.phone;
+        document.getElementById("amount").value = userDetails.amount; 
+        document.getElementById("description").value = userDetails.description; 
+        document.getElementById("category").value = userDetails.category; 
     }
     list.appendChild(del);
     list.appendChild(edit);
     cre.appendChild(list);
 }
+
 function loadExpenses() {
     const cre = document.getElementById("exList");
     cre.innerHTML = ""; 
@@ -54,4 +55,3 @@ function loadExpenses() {
 window.addEventListener('load', function() {
     loadExpenses();
 });
-
